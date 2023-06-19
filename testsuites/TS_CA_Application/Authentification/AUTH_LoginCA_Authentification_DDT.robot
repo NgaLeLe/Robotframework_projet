@@ -45,6 +45,7 @@ VerificationAuthentification
     Wait Until Element Is Visible    ${btn_connecter}
     #user se connecte par ses identifiants
     Login By Username And Password   ${User}   ${Password}
+    
     Wait Until Element Is Visible    ${div_bienvenue}
     #
     Verify Name User Display    ${User}
