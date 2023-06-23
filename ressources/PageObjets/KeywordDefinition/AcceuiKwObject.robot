@@ -1,15 +1,15 @@
 *** Settings ***
-Documentation      Definition the common keyword
+Documentation      Definition the keyword for Page Acceuil of application CA
 Library            SeleniumLibrary
 Resource           ../Locators/AcceuilPage.resource
-Resource           ../../CommonKeyword.robot
+
 
 
 *** Keywords ***
-Go To Page Login
+Acces_To_CA
     [Documentation]    Click btn Access CA pour aller à la page Login
-    [Arguments]   ${btn_AccessCA}
+    Wait Until Element Is Visible    ${btn_AccessCA}
+    Click Element    ${btn_AccessCA}
 
-   Go To Page    ${btn_AccessCA}
 
 

@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation      Definition the common keyword
+Documentation      Definition the keyword for page AcceuilProfilPage
 Library            SeleniumLibrary
 Resource           ../Locators/AcceuilByProfilPage.resource
 
