@@ -67,31 +67,15 @@ Afficher_type_card_using_keyword
     IF  ${Status}
         Log    Client created
         Get_Type_Card_Save_Answer_Xml   CardTypeRequest
+        ${fileRequestNew}   Modify_Number_Card_TypeCardRequest    CardTypeRequest   5425233430109903
+        Log    ${fileRequestNew}
+        Get_Type_Card_Save_Answer_Xml   ${fileRequestNew}
     ELSE
         Log  Not created
     END
 
 
 *** Keywords ***
-Get_Type_Card_Save_Answer_Xml
-    [Documentation]
-    [Arguments]    ${name_file_request}
-
-
-    ${reponse}              Call SOAP Method With XML   ${CURDIR}/${name_file_request}.xml
-    ${typeCard}             Get Data From XML By Tag    ${reponse}      GetCardTypeResult
-    Log   ${typeCard}
-    ${name_file_answer}     Catenate     ${name_file_request}[:-1]   Reponse
-    Save XML To File        ${reponse}                  ${CURDIR}      ${name_file_answer}
-
-
-Modify_Number_Card_TypeCardRequest
-    [Arguments]    ${nvCardNumber}
-    ${nvCardNumber}         Create Dictionary    smar:CardNumber=6250941006528599
-    Log                     ${nvCardNumber}
-    Exit XML Request        ${CURDIR}/CardTypeRequest.xml   ${nvCardNumber}    CardTypeRequestGen
-
-
 Init_Client_Soap
     [Arguments]    ${url_soap}
 
@@ -103,3 +87,26 @@ Init_Client_Soap
         Set Local Variable    ${status}    False
     END
     [Return]    ${status}
+
+
+Get_Type_Card_Save_Answer_Xml
+    [Documentation]
+    [Arguments]    ${name_file_request}
+
+    ${reponse}              Call SOAP Method With XML   ${CURDIR}/${name_file_request}.xml
+    ${typeCard}             Get Data From XML By Tag    ${reponse}      GetCardTypeResult
+    Log   ${typeCard}
+    ${name_file_answer}     Catenate   SEPARATOR=    ${name_file_request}   Reponse
+    Save XML To File        ${reponse}                  ${CURDIR}      ${name_file_answer}
+
+
+Modify_Number_Card_TypeCardRequest
+    [Arguments]    ${name_file_request}  ${NumberCard_val}
+    Log                     ${NumberCard_val}
+    ${nvCardNumber}         Create Dictionary    smar:CardNumber=${NumberCard_val}
+    Log                     ${nvCardNumber}
+
+    ${newFile}              Catenate   SEPARATOR=  ${name_file_request}   New
+    Edit XML Request        ${CURDIR}/${name_file_request}.xml   ${nvCardNumber}    ${newFile}
+    [Return]        ${newFile}
+
