@@ -2,34 +2,46 @@
 Documentation      Case de test in for
 Force Tags         POEC-CA
 Library            SeleniumLibrary
-
+Resource           ../../../../ressources/PageObjets/KeywordDefinition/Common.robot
+Resource           ../../../../ressources/PageObjets/KeywordDefinition/AcceuiKwObject.robot
+Resource           ../../../../ressources/PageObjets/Variables/RES_VariableGlobalCA.resource
 
 *** Variables ***
 
 
 *** Test Cases ***
     [Documentation]     BDD cas de test
-    ...  She cannot use the old password anymore
+    ...  When l'URL lancé dans le navigateur
+    ...  Then page Acceuil CA est affiché
+    ...  Given un utilisateur non connecté à CA
+    ...  And l'icone "Accès Crédit Auto disponible" au centre de la page
+    ...  And les icônes "Crédit Auto", "Accueil" sont disponibles dans le Bandeau Menu
 
 
-User can change password
+Connexion CA via URL Valide
+    [Tags]  PP-12
 
-    Given a user has a valid account
-    When she changes her password
-    Then she can log in with the new password
-    And she cannot use the old password anymore
+    Given Un utilisateur non connecté à CA
+    When URL lancé dans le navigateur
+    Then Page Acceuil CA est affiché
+    And Icone Accès CA disponible au centre de la page
+    And Icones Crédit Auto and Accueil dans le Bandeau Menu
 
 
 #chaque phrase doit être implément par un *** Keywords ***
 *** Keywords ***
-a user has a valid account
-    Log    "A user has a valid account"
+Un utilisateur non connecté à CA
+    Log    "user non connecter"
+    Opening_CA    ${browser}
 
-she changes her password
-    Log    "She changes her password"
+URL lancé dans le navigateur
+    Go_To_URL    ${url_CA}
 
-she can log in with the new password
-    Log    "She can log in with the new password"
+Page Acceuil CA est affiché
+    Page_Acceuil_Display
 
-she cannot use the old password anymore
-    Log    'She cannot use the old password anymore"
+Icone Accès CA disponible au centre de la page
+    Check_Btn_Access_Display
+
+Icones Crédit Auto and Accueil dans le Bandeau Menu
+    Check_Icons_Acceuil_CA_Display

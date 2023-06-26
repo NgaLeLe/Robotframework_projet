@@ -6,15 +6,17 @@ Force Tags         POEC-CA
 Library            SeleniumLibrary
 Library            DataDriver  file=AUTH_LoginUserDDT.xlsx  encoding=utf-8
 
-Resource           ../../../ressources/VariableGlobalCA.resource
-Resource           ../../../ressources/CommonKeyword.robot
-Resource           ../../../ressources/PageObjets/KeywordDefinationFiles/AcceuilByProfilPage.robot
-Resource           ../../../ressources/PageObjets/KeywordDefinationFiles/LoginPage.robot
+Resource           ../../../ressources/PageObjets/Variables/RES_VariableGlobalCA.resource
+# Resource           ../../../ressources/CommonKeyword.robot
+Resource           ../../../ressources/PageObjets/Locators/AcceuilPage.resource
+Resource           ../../../ressources/PageObjets/Locators/LoginPage.resource
+Resource           ../../../ressources/PageObjets/Locators/AcceuilByProfilPage.resource
+Resource           ../../../ressources/PageObjets/KeywordDefinition/Common.robot
 #pour modele DDT, install libraire robotframework-datadriver[XLS]
 
 #Setup - precondition - action au debut et à la fin d'execution des CdTs
-Suite Setup      Open CA    ${url_CA}  ${browser}
-Suite Teardown   Close Browser
+Suite Setup      Opening_CA_with_url    ${url_CA}  ${browser}
+Suite Teardown   Close_Browser
 Test Template    VerificationAuthentification
 #Test template: utiliser comme CdT générique -> il faut bien que il est bien défini dans keyword
 
@@ -41,16 +43,16 @@ VerificationAuthentification
 
     [Arguments]    ${User}   ${Password}
     # aller page Login
-    Click Link    ${btn_AccessCA}
-    Wait Until Element Is Visible    ${btn_connecter}
+    #Acces_To_CA
+    Check_page_login_display
     #user se connecte par ses identifiants
-    Login By Username And Password   ${User}   ${Password}
+    Login_by_user_pswd_CA    ${User}   ${Password}
     
-    Wait Until Element Is Visible    ${div_bienvenue}
+    Check_Message_Welcome_CA
     #
-    Verify Name User Display    ${User}
-    Verify Menu User Display    ${User}
+    Check_Name_User_Display_By_Name   ${User}
+    Check_Menu_By_User    ${User}
     Capture Page Screenshot    
-    Logout CA
-
+    Close_Application_CA
+    Acces_To_CA
 

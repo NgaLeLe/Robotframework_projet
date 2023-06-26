@@ -2,8 +2,8 @@
 Documentation      Case de test pilote par jeux de données (fichier AUTH_LoginUser.xlsx)
 Force Tags         POEC-CA
 Library            SeleniumLibrary
-Resource            ../../../ressources/VariableGlobalCA.resource
-Resource            ../../../ressources/PageObjets/KeywordFunctional/LoginPage.robot
+Resource            ../../../ressources/PageObjets/Variables/RES_VariableGlobalCA.resource
+Resource            ../../../ressources/PageObjets/KeywordFunctional/LoginPageFunc.robot
 Resource           ../../../ressources/PageObjets/KeywordDefinition/Common.robot
 
 *** Variables ***
@@ -16,7 +16,7 @@ Resource           ../../../ressources/PageObjets/KeywordDefinition/Common.robot
     ...  Appel Kw fonctionnel de login avec Identifiants OK
     ...  Appel Kw commun de cloture
     [Tags]    PP-25, AUTH-Login-Valid-DDT
-    Opening_CA   ${urlCA}   ${browser}
+    Opening_CA_with_url   ${urlCA}   ${browser}
     Login_CA_All_Users
     Close_Browser_CA
 
@@ -26,4 +26,6 @@ AUTH_VerificationIdentifiantsKO
     ...  Appel Kw commun de connexion
     ...  Appel Kw fonctionnel de login avec IdentifiantsKO
     [Tags]    PP-25, AUTH-Login-Invalid-DDT
-
+    Opening_CA_with_url   ${urlCA}   ${browser}
+    Login_CA_Users_Invalids
+    Close_Browser_CA

@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:smar="http://localhost/SmartPayments/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <smar:GetCardType>
+         <!--Optional:-->
+         <smar:CardNumber>378282246310005</smar:CardNumber>
+      </smar:GetCardType>
+   </soapenv:Body>
+</soapenv:Envelope>
