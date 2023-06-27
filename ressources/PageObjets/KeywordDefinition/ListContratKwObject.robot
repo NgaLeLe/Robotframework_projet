@@ -12,4 +12,7 @@ Check_Title_ListContrat_Display
 
 
 Select_Number_Contrat_Display
+    [Documentation]    User click selectbox Nombres de lignes \
+    ...   select number of lines in list
+    [Arguments]    ${number_lines}
 
