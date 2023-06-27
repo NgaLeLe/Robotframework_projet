@@ -15,3 +15,4 @@ ConsultListEstablishedContract
     Login_by_identifiant_CA     ${admin_acd}
     Go_To_Consulter_List_Contrat
     Check_Page_ListContrat_Display_By_User    ${admin_acd}
+    Select_Number_Contrat_Display    8

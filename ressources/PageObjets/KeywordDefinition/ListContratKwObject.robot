@@ -15,4 +15,4 @@ Select_Number_Contrat_Display
     [Documentation]    User click selectbox Nombres de lignes \
     ...   select number of lines in list
     [Arguments]    ${number_lines}
-
+    Select From List By Value     ${select_maxRow}      ${number_lines}
