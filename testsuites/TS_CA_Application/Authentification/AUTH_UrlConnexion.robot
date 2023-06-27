@@ -1,9 +1,8 @@
 *** Settings ***
 Documentation      Exercices Robot Framework - Selenium
 Library            SeleniumLibrary
-Resource            ../../../ressources/VariableGlobalCA.resource
+Resource           ../../../ressources/PageObjets/Variables/RES_VariableGlobalCA.resource
 Resource            ../../../ressources/PageObjets/Locators/AcceuilPage.resource
-Resource            ../../../ressources/PageObjets/Locators/LoginPage.resource
 
 *** Variables ***
 #${urlCAInvalide}    http://credit-auto.qsiconseil.m
@@ -16,7 +15,7 @@ AUTH - Connexion CA via URL valide
     ...  Lancement de l’application via l’URL fournit par l’administrateur
     [Tags]    PP-12, AUTH_VAL
 
-    Open Browser     #${urlCA}    ${browser}
+    Open Browser     ${urlCA}    ${browser}
 
     Element Should Be Visible    ${lnk_Acceuil}
     Element Should Be Visible    ${lnk_CreditCA}

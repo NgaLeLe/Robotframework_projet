@@ -2,8 +2,8 @@
 Documentation      Definition the keyword for Page User's Login
 Library            SeleniumLibrary
 Resource           ../Locators/LoginPage.resource
-Resource            ../Variables/LoginPage.resource
-Resource            ./AcceuilByProfilKwObject.robot
+#Resource            ../Variables/VAR_LoginPage.resource
+#Resource            ./AcceuilByProfilKwObject.robot
 
 
 *** Variables ***
@@ -15,6 +15,8 @@ Login_by_identifiant_CA
     [Documentation]    user enter username to input identifiant, password
     ...                user click button 'Se connecter'
     [Arguments]        ${identifiant}
+    Log                ${identifiant}[user]
+    Log                ${identifiant}[pswd]
     Login_by_user_pswd_CA    ${identifiant}[user]    ${identifiant}[pswd]
 
 

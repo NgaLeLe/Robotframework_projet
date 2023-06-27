@@ -19,19 +19,26 @@ Check_Message_Welcome_CA
     Wait Until Page Contains     ${mess_bienvenue}
 
 
-Check_Name_Identifiant_Display
-    [Documentation]    verify username is displayed in menu and in his page
+Check_Name_Identifiant_Display_Menu
+    [Documentation]    verify username is displayed in menu
     ...  with argument Dictionary     {username:xxx, pswd: yyy}
     [Arguments]    ${identifiant}
-    Check_Name_User_Display_By_Name    ${identifiant}[user]
+    Check_Name_User_Display_By_Name    ${identifiant}[user]    ${div_i_username}
+
+
+Check_Name_Identifiant_Display_Page
+    [Documentation]    verify username is displayed in his page
+    ...  with argument Dictionary     {username:xxx, pswd: yyy}
+    [Arguments]    ${identifiant}
+    Check_Name_User_Display_By_Name    ${identifiant}[user]    ${div_b_username}
 
 
 Check_Name_User_Display_By_Name
-    [Arguments]    ${username}
-    #Element Text Should Be   ${div_b_username}   ${username}
-    #Element Text Should Be   ${div_i_username}   ${username}
-    Element Should Contain    ${div_b_username}   ${username}
-    Element Should Contain    ${div_i_username}   ${username}
+    [Arguments]    ${username}   ${div_username}
+    #Element Text Should Be    ${div_username}   ${username}
+    Log Many        ${div_username}   ${username}
+
+    Element Should Contain     ${div_username}  ${username}
 
 
 Check_Menu_By_User
@@ -63,3 +70,7 @@ Verify_Element_Menu_Visible
 Deconnexion_CA
     [Documentation]    user click button Deconnexion
     Click Link    ${btn_deconnexion}
+
+
+Go_To_Consulter_List_Contrat
+    Click Element       ${lnk_consulter_liste_credit}

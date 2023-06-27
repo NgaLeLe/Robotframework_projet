@@ -1,6 +1,7 @@
 *** Settings ***
 Library    SoapLibrary
 Library    OperatingSystem
+Resource    ../../ressources/WebServices/WS_CommonKw.robot
 Resource    ../../ressources/WS_GlobalVariables.resource
 
 
@@ -22,10 +23,11 @@ Afficher_type_card
     #comment verifie wsld qui est bonne
     TRY
         Create SOAP Client      ${wsdl}
-        ${reponse}              Call SOAP Method With XML   ${CURDIR}/CardTypeRequest.xml
+        Log   ${CURDIR}
+        ${reponse}              Call SOAP Method With XML   ${path_request_dir}/CardTypeRequest.xml
         ${typeCard}             Get Data From XML By Tag    ${reponse}      GetCardTypeResult
         Log   ${typeCard}
-        Save XML To File        ${reponse}                  ${CURDIR}/      CardTypeRequestResponse
+        Save XML To File        ${reponse}                 ${path_reponse_dir}/      CardTypeRequestResponse
     EXCEPT
         Log                     "WSDL ne fonctionne pas"
     END
@@ -38,24 +40,24 @@ Afficher_type_card_with_new_number_card
     ...   Donnees modifiées doit être forme dictionnaire
     ...   Envoyer le nv request
     ...   Recuperer la réponse et afficher la balise Typecard
-    ...   Sauve-garder la reponse dans un fichier
+    ...   Sauvegarder la reponse dans un fichier
     [Tags]    Get_Info_Card
 
     TRY
         Create SOAP Client      ${wsdl}
-        ${reponse}              Call SOAP Method With XML   ${CURDIR}/CardTypeRequest.xml
+        ${reponse}              Call SOAP Method With XML   ${path_request_dir}/CardTypeRequest.xml
         ${typeCard}             Get Data From XML By Tag    ${reponse}      GetCardTypeResult
         Log   ${typeCard}
-        Save XML To File        ${reponse}                  ${CURDIR}      CardTypeRequestResponse
+        Save XML To File        ${reponse}                  ${path_reponse_dir}/      CardTypeRequestResponse
         # modifier
         ${nvCardNumber}         Create Dictionary    smar:CardNumber=6250941006528599
         Log                     ${nvCardNumber}
-        Edit XML Request        ${CURDIR}/CardTypeRequest.xml   ${nvCardNumber}    CardTypeRequestGen
+        Edit XML Request        ${path_request_dir}/CardTypeRequest.xml   ${nvCardNumber}    CardTypeRequestGen
 
-        ${reponse}              Call SOAP Method With XML   ${CURDIR}/CardTypeRequestGen.xml
+        ${reponse}              Call SOAP Method With XML   ${path_request_dir}/CardTypeRequestGen.xml
         ${typeCard}             Get Data From XML By Tag    ${reponse}      GetCardTypeResult
         Log   ${typeCard}
-        Save XML To File        ${reponse}                  ${CURDIR}      CardTypeRequestGenResponse
+        Save XML To File        ${reponse}                  ${path_reponse_dir}/     CardTypeRequestGenResponse
 
     EXCEPT
         Log                     "WSDL ne fonctionne pas"
@@ -75,38 +77,4 @@ Afficher_type_card_using_keyword
     END
 
 
-*** Keywords ***
-Init_Client_Soap
-    [Arguments]    ${url_soap}
-
-    TRY
-        Create SOAP Client      ${url_soap}
-        Set Local Variable    ${status}   True
-    EXCEPT
-        Log    "Exception Creation client"
-        Set Local Variable    ${status}    False
-    END
-    [Return]    ${status}
-
-
-Get_Type_Card_Save_Answer_Xml
-    [Documentation]
-    [Arguments]    ${name_file_request}
-
-    ${reponse}              Call SOAP Method With XML   ${CURDIR}/${name_file_request}.xml
-    ${typeCard}             Get Data From XML By Tag    ${reponse}      GetCardTypeResult
-    Log   ${typeCard}
-    ${name_file_answer}     Catenate   SEPARATOR=    ${name_file_request}   Reponse
-    Save XML To File        ${reponse}                  ${CURDIR}      ${name_file_answer}
-
-
-Modify_Number_Card_TypeCardRequest
-    [Arguments]    ${name_file_request}  ${NumberCard_val}
-    Log                     ${NumberCard_val}
-    ${nvCardNumber}         Create Dictionary    smar:CardNumber=${NumberCard_val}
-    Log                     ${nvCardNumber}
-
-    ${newFile}              Catenate   SEPARATOR=  ${name_file_request}   New
-    Edit XML Request        ${CURDIR}/${name_file_request}.xml   ${nvCardNumber}    ${newFile}
-    [Return]        ${newFile}
 

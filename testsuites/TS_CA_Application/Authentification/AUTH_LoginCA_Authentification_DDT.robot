@@ -8,9 +8,9 @@ Library            DataDriver  file=AUTH_LoginUserDDT.xlsx  encoding=utf-8
 
 Resource           ../../../ressources/PageObjets/Variables/RES_VariableGlobalCA.resource
 # Resource           ../../../ressources/CommonKeyword.robot
-Resource           ../../../ressources/PageObjets/Locators/AcceuilPage.resource
-Resource           ../../../ressources/PageObjets/Locators/LoginPage.resource
-Resource           ../../../ressources/PageObjets/Locators/AcceuilByProfilPage.resource
+#Resource           ../../../ressources/PageObjets/Locators/AcceuilPage.resource
+#Resource           ../../../ressources/PageObjets/Locators/LoginPage.resource
+#Resource           ../../../ressources/PageObjets/Locators/AcceuilByProfilPage.resource
 Resource           ../../../ressources/PageObjets/KeywordDefinition/Common.robot
 #pour modele DDT, install libraire robotframework-datadriver[XLS]
 
@@ -50,8 +50,9 @@ VerificationAuthentification
     
     Check_Message_Welcome_CA
     #
-    Check_Name_User_Display_By_Name   ${User}
-    Check_Menu_By_User    ${User}
+    ${var_identifiant}      Create Dictionary    user=${User}    pswd=${Password}
+    Check_Name_Identifiant_Display_Page     ${var_identifiant}
+    Check_Menu_User_Display                 ${var_identifiant}
     Capture Page Screenshot    
     Close_Application_CA
     Acces_To_CA
