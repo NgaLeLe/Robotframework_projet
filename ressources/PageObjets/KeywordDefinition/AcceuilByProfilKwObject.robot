@@ -4,12 +4,6 @@ Library            SeleniumLibrary
 Resource           ../Locators/AcceuilByProfilPage.resource
 Resource           ../Variables/VAR_AcceuilByProfilPage.resource
 
-*** Variables ***
-#parametres pour keywords
-${mess_bienvenue}       Bienvenue sur l'application Crédit Auto
-
-
-
 *** Keywords ***
 Check_Message_Welcome_CA
     [Documentation]    verify element "bienvenue" is displayed
@@ -67,10 +61,14 @@ Verify_Element_Menu_Visible
         Element Should Be Visible   ${link}
     END
 
+
 Deconnexion_CA
     [Documentation]    user click button Deconnexion
     Click Link    ${btn_deconnexion}
 
+
+Check_HomePage_By_Profile_Display
+    Check_Message_Welcome_CA
 
 Go_To_Consulter_List_Contrat
     Click Element       ${lnk_consulter_liste_credit}

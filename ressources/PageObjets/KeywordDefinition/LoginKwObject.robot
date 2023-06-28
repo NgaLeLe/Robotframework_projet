@@ -6,10 +6,6 @@ Resource           ../Locators/LoginPage.resource
 #Resource            ./AcceuilByProfilKwObject.robot
 
 
-*** Variables ***
-${mess_invalide}        Identifiants invalides
-
-
 *** Keywords ***
 Login_by_identifiant_CA
     [Documentation]    user enter username to input identifiant, password

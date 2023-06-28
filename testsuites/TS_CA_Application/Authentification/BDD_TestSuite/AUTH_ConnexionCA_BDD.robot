@@ -21,11 +21,11 @@ Resource           ../../../../ressources/PageObjets/Variables/RES_VariableGloba
 Connexion CA via URL Valide
     [Tags]  PP-12
 
-    Given Un utilisateur non connecté à CA
-    When URL lancé dans le navigateur
-    Then Page Acceuil CA est affiché
-    And Icone Accès CA disponible au centre de la page
-    And Icones Crédit Auto and Accueil dans le Bandeau Menu
+    Given   Un utilisateur non connecté à CA
+    When    URL lancé dans le navigateur
+    Then    Page Acceuil CA est affiché
+    And     Icone Accès CA disponible au centre de la page
+    And     Icones Crédit Auto and Accueil dans le Bandeau Menu
 
 
 #chaque phrase doit être implément par un *** Keywords ***
