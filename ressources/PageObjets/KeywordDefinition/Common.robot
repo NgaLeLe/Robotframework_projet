@@ -34,4 +34,7 @@ Close_Application_CA
     Deconnexion_CA
 
 
-
+Check_Header_Page_Display
+    [Documentation]    verify title of page display
+    [Arguments]    ${div_header}   ${header_text}
+    Element Should Contain    ${div_header}   ${header_text}
