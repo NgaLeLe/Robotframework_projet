@@ -6,8 +6,6 @@ Resource           ../../../../ressources/PageObjets/KeywordDefinition/Common.ro
 Resource           ../../../../ressources/PageObjets/KeywordDefinition/AcceuiKwObject.robot
 Resource           ../../../../ressources/PageObjets/Variables/RES_VariableGlobalCA.resource
 
-*** Variables ***
-
 
 *** Test Cases ***
     [Documentation]     BDD cas de test

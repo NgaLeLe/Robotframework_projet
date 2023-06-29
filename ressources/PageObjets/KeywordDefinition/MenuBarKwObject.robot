@@ -6,4 +6,4 @@ Resource           ../Locators/MenuBar.resource
 *** Keywords ***
 Click_menu_credit
     Click Element    ${me_credit}
-    W
+
