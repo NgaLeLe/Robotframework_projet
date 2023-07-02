@@ -31,9 +31,9 @@ Verify_Number_Rows_Table
 
 
 Click_Icon_View_Detail_Contract
+    [Documentation]    From id's row selected
     [Arguments]     ${id_row_view}
     ${xpath_btn_voir}   Catenate_Xpath_Tr_With_Nbrow    ${id_row_view}   ${btn_voir_contrat}
-    Log                 ${xpath_btn_voir}
     Click Element       ${xpath_btn_voir}
 
 

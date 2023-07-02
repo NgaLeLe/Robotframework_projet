@@ -21,3 +21,4 @@ View_A_Contract_Established
     #View_Detail_Contract_By_Id_Row            ${id_row_chose}
     Verify_Infomation_Detail_Contract_By_Id   ${id_row_chose}
     Check_Header_Page_ContractDetail_Display
+    Check_Title_Legend_Information_Contrat_Display
